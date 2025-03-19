@@ -11,7 +11,6 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['@/components/ui'],
-    optimizeFonts: true,
   },
   // Ignore ESLint errors during build for Vercel deployment
   eslint: {

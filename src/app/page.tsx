@@ -5,15 +5,12 @@ import dynamic from 'next/dynamic';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from 'next/script';
+import TdeeExplanationClient from '@/components/TdeeExplanationClient';
 
 // Dynamically import non-critical components
 const TdeeCalculatorForm = dynamic(() => import('@/components/TdeeCalculatorForm'), {
   ssr: true,
   loading: () => <div className="min-h-[400px] flex items-center justify-center">Loading calculator...</div>
-});
-
-const TdeeExplanation = dynamic(() => import('@/components/TdeeExplanation'), {
-  ssr: false // Load this component only on client-side after initial render
 });
 
 export default function Home() {
@@ -155,6 +152,11 @@ export default function Home() {
                 eat more; and for maintenance, eat roughly the same amount.
               </p>
             </div>
+          </section>
+
+          <section className="mt-12">
+            <h2 className="text-2xl font-bold text-green-600 mb-6">Components of TDEE</h2>
+            <TdeeExplanationClient />
           </section>
         </div>
 
