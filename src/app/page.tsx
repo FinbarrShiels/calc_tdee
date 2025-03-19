@@ -112,7 +112,7 @@ export default function Home() {
       />
       <Navbar />
       <main className="min-h-screen pt-16">
-        <header className="bg-gradient-to-r from-green-600 to-green-400 py-6">
+        <header className="bg-gradient-to-r from-green-700 to-green-600 py-6">
           <div className="container mx-auto px-4">
             <h1 className="text-3xl font-bold text-white text-center">TDEE Calculator</h1>
             <p className="text-white text-center mt-2">Calculate your Total Daily Energy Expenditure</p>
@@ -122,8 +122,8 @@ export default function Home() {
         <div className="container mx-auto px-4 py-8 max-w-[800px]">
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl text-green-700">Calculate Your TDEE</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-2xl text-green-800">Calculate Your TDEE</CardTitle>
+              <CardDescription className="text-gray-700">
                 Enter your details below to calculate your Total Daily Energy Expenditure
               </CardDescription>
             </CardHeader>
@@ -133,8 +133,8 @@ export default function Home() {
           </Card>
 
           <section className="mt-12">
-            <h2 className="text-2xl font-bold text-green-600 mb-6">What is TDEE?</h2>
-            <div className="prose max-w-none">
+            <h2 className="text-2xl font-bold text-green-800 mb-6">What is TDEE?</h2>
+            <div className="prose max-w-none text-gray-800">
               <p className="mb-4">
                 Total Daily Energy Expenditure (TDEE) is the number of calories you burn per day. 
                 Understanding your TDEE is essential for managing your weight, as it helps you 
