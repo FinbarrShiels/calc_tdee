@@ -302,12 +302,12 @@ export default function TdeeCalculatorForm() {
           ) : (
             <div className="imperial-height-container">
               <FormLabel className="small-label">Height (ft & in)</FormLabel>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2 mt-1">
                 <FormField
                   control={form.control}
                   name="heightFeet"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="space-y-0">
                       <FormControl>
                         <Input 
                           type="number" 
@@ -328,7 +328,7 @@ export default function TdeeCalculatorForm() {
                   control={form.control}
                   name="heightInches"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="space-y-0">
                       <FormControl>
                         <Input 
                           type="number" 
