@@ -5,12 +5,23 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-// Optimize font loading with display:swap to prevent blocking
+// Optimize font loading with display:swap and subset to improve LCP
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["400", "500"], // Only preload essential weights
   variable: "--font-roboto",
   display: "swap",
+  preload: true,
+  fallback: ['system-ui', 'arial', 'sans-serif'],
+});
+
+// Later load additional weights if needed
+const robotoFull = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "700"],
+  variable: "--font-roboto-full",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -102,27 +113,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Critical meta tags first for faster parsing */}
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1" 
         />
         
-        {/* Optimize resource loading with preconnect */}
+        {/* Preloading critical resources */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Non-critical resource hints */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-        
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        
+        {/* Add preload hints for critical CSS and JavaScript */}
+        <link rel="preload" href="/globals.css" as="style" />
       </head>
       <body
-        className={`${roboto.variable} font-sans antialiased bg-zinc-50`}
+        className={`${roboto.variable} ${robotoFull.variable} font-sans antialiased bg-zinc-50`}
         suppressHydrationWarning
       >
         {children}
@@ -164,6 +176,16 @@ export default function RootLayout({
         />
         
         {/* Load analytics last */}
+        <Script strategy="afterInteractive" id="performance-mark-script">
+          {`
+            // Mark end of critical rendering
+            window.addEventListener('load', function() {
+              if (window.performance) {
+                window.performance.mark('app-loaded');
+              }
+            });
+          `}
+        </Script>
         <SpeedInsights 
           debug={process.env.NODE_ENV === 'development'} 
           sampleRate={100}

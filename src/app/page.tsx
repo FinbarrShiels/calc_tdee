@@ -7,18 +7,59 @@ import Footer from "@/components/Footer";
 import Script from 'next/script';
 import TdeeExplanationClient from '@/components/TdeeExplanationClient';
 
-// Dynamically import non-critical components
+// Dynamically import non-critical components with higher priority
 const TdeeCalculatorForm = dynamic(() => import('@/components/TdeeCalculatorForm'), {
   ssr: true,
-  loading: () => <div className="min-h-[400px] flex items-center justify-center">Loading calculator...</div>
+  loading: () => (
+    <div className="min-h-[400px] flex items-center justify-center">
+      <div className="animate-pulse bg-gray-200 rounded-md w-full max-w-md h-80"></div>
+    </div>
+  )
 });
+
+// Mark this component as generating static HTML
+export const dynamic = 'force-static';
 
 export default function Home() {
   return (
     <>
+      <Navbar />
+      <main className="min-h-screen pt-16">
+        {/* High-priority visible content first for better LCP */}
+        <header className="bg-gradient-to-r from-green-600 to-green-400 py-6">
+          <div className="container mx-auto px-4">
+            <h1 className="text-3xl font-bold text-white text-center">TDEE Calculator</h1>
+            <p className="text-white text-center mt-2">Calculate your Total Daily Energy Expenditure</p>
+          </div>
+        </header>
+
+        <div className="container mx-auto px-4 py-8 max-w-[800px]">
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-2xl text-green-700">Calculate Your TDEE</CardTitle>
+              <CardDescription>
+                Enter your details below to calculate your Total Daily Energy Expenditure
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <TdeeCalculatorForm />
+            </CardContent>
+          </Card>
+
+          <section className="mt-12">
+            <h2 className="text-2xl font-bold text-green-600 mb-6">What is TDEE?</h2>
+            <TdeeExplanationClient />
+          </section>
+        </div>
+
+        <Footer />
+      </main>
+      
+      {/* Move structured data scripts to end of body for better initial rendering */}
       <Script
         id="schema-jsonld"
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
@@ -51,6 +92,7 @@ export default function Home() {
       <Script
         id="howto-jsonld"
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
@@ -107,36 +149,6 @@ export default function Home() {
           })
         }}
       />
-      <Navbar />
-      <main className="min-h-screen pt-16">
-        <header className="bg-gradient-to-r from-green-600 to-green-400 py-6">
-          <div className="container mx-auto px-4">
-            <h1 className="text-3xl font-bold text-white text-center">TDEE Calculator</h1>
-            <p className="text-white text-center mt-2">Calculate your Total Daily Energy Expenditure</p>
-          </div>
-        </header>
-
-        <div className="container mx-auto px-4 py-8 max-w-[800px]">
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-2xl text-green-700">Calculate Your TDEE</CardTitle>
-              <CardDescription>
-                Enter your details below to calculate your Total Daily Energy Expenditure
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <TdeeCalculatorForm />
-            </CardContent>
-          </Card>
-
-          <section className="mt-12">
-            <h2 className="text-2xl font-bold text-green-600 mb-6">What is TDEE?</h2>
-            <TdeeExplanationClient />
-          </section>
-        </div>
-
-        <Footer />
-      </main>
     </>
   );
 }
