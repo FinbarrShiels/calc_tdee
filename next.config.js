@@ -16,6 +16,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Add trailing slash for better compatibility with static hosting
+  trailingSlash: true,
 };
 
 module.exports = nextConfig; 
