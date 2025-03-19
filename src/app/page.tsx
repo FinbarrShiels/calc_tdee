@@ -131,31 +131,6 @@ export default function Home() {
 
           <section className="mt-12">
             <h2 className="text-2xl font-bold text-green-600 mb-6">What is TDEE?</h2>
-            <div className="prose max-w-none">
-              <p className="mb-4">
-                Total Daily Energy Expenditure (TDEE) is the number of calories you burn per day. 
-                Understanding your TDEE is essential for managing your weight, as it helps you 
-                determine how many calories you need to consume to maintain, lose, or gain weight.
-              </p>
-              <p className="mb-4">
-                Your TDEE is calculated based on several factors:
-              </p>
-              <ul className="list-disc pl-5 mb-4">
-                <li>Basal Metabolic Rate (BMR): The calories your body needs at complete rest</li>
-                <li>Physical Activity: How active you are in your daily life</li>
-                <li>Thermic Effect of Food: Calories burned during digestion</li>
-                <li>Non-Exercise Activity Thermogenesis: Calories burned through fidgeting, standing, etc.</li>
-              </ul>
-              <p>
-                By knowing your TDEE, you can make informed decisions about your nutrition and 
-                fitness goals. For weight loss, eat fewer calories than your TDEE; for weight gain, 
-                eat more; and for maintenance, eat roughly the same amount.
-              </p>
-            </div>
-          </section>
-
-          <section className="mt-12">
-            <h2 className="text-2xl font-bold text-green-600 mb-6">Components of TDEE</h2>
             <TdeeExplanationClient />
           </section>
         </div>
