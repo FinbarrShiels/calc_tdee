@@ -105,7 +105,7 @@ export default function Home() {
       <main className="min-h-screen pt-16">
         <header className="bg-gradient-to-r from-green-600 to-green-400 py-6">
           <div className="container mx-auto px-4">
-            <h1 className="text-3xl font-bold text-white text-center">TDEE Calculator</h1>
+            <h1 className="text-3xl font-bold text-white text-center">TDEE Calculator 101</h1>
             <p className="text-white text-center mt-2">Calculate your Total Daily Energy Expenditure</p>
           </div>
         </header>
