@@ -23,14 +23,14 @@ export const metadata: Metadata = {
     email: false,
     telephone: false,
   },
-  metadataBase: new URL('https://tdee-calc.vercel.app'),
+  metadataBase: new URL('https://www.tdeecalculator.health'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "TDEE Calculator - Calculate Your Daily Calorie Needs",
     description: "Calculate your Total Daily Energy Expenditure (TDEE) and Basal Metabolic Rate (BMR) with our accurate calculator. Get personalized macronutrient recommendations.",
-    url: 'https://tdee-calc.vercel.app',
+    url: 'https://www.tdeecalculator.health',
     siteName: 'TDEE Calculator',
     locale: 'en_US',
     type: 'website',
@@ -104,14 +104,14 @@ export default function RootLayout({
         />
         <Script
           strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`} // Replace with your actual Google Analytics ID
+          src={`https://www.googletagmanager.com/gtag/js?id=G-3BJFR4W8KJ`} // Replace with your actual Google Analytics ID
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX'); // Replace with your actual Google Analytics ID
+            gtag('config', 'G-3BJFR4W8KJ'); // Replace with your actual Google Analytics ID
           `}
         </Script>
       </head>

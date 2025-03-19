@@ -1,0 +1,18 @@
+# Security headers for tdeecalculator.health
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self' https://www.tdeecalculator.health https://www.googletagmanager.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Cache control for static assets
+/images/*
+  Cache-Control: public, max-age=604800, s-maxage=604800
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable 

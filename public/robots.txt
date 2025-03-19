@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://tdee-calc.vercel.app/sitemap.xml 
+Sitemap: https://www.tdeecalculator.health/sitemap.xml 
