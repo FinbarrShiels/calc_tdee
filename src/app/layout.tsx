@@ -149,14 +149,6 @@ export default function RootLayout({
         <SpeedInsights 
           debug={process.env.NODE_ENV === 'development'} 
           sampleRate={100}
-          beforeSend={(event) => {
-            // Always capture data in development
-            if (process.env.NODE_ENV === 'development') {
-              return event;
-            }
-            // Sample 100% of production data
-            return event;
-          }}
         />
         <Analytics />
       </body>
