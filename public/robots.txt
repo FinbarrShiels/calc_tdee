@@ -3,4 +3,5 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.tdeecalculator.health/sitemap.xml 
+Sitemap: https://www.tdeecalculator.health/sitemap.xml
+
