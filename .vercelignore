@@ -1,0 +1,4 @@
+# Local development files
+.git
+.github
+node_modules
