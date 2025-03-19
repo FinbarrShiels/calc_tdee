@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -105,14 +106,14 @@ export default function RootLayout({
         />
         <Script
           strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-3BJFR4W8KJ`} // Replace with your actual Google Analytics ID
+          src={`https://www.googletagmanager.com/gtag/js?id=G-3BJFR4W8KJ`}
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-3BJFR4W8KJ'); // Replace with your actual Google Analytics ID
+            gtag('config', 'G-3BJFR4W8KJ');
           `}
         </Script>
       </head>
@@ -121,7 +122,8 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
-        <SpeedInsights />
+        <SpeedInsights debug={process.env.NODE_ENV === 'development'} />
+        <Analytics />
       </body>
     </html>
   );
