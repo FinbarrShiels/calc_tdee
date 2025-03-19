@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
+  <!-- Background -->
+  <rect width="24" height="24" rx="4" fill="url(#gradient)" />
+  
+  <!-- Calculator base with rounded corners -->
+  <rect 
+    x="3" 
+    y="3" 
+    width="14" 
+    height="18" 
+    rx="2" 
+    stroke="white" 
+    strokeWidth="1.5" 
+    strokeOpacity="0.9"
+  />
+  
+  <!-- Calculator screen with subtle glow -->
+  <rect 
+    x="5" 
+    y="5" 
+    width="10" 
+    height="3" 
+    rx="1" 
+    fill="white" 
+    opacity="0.9" 
+  />
+  <text 
+    x="10" 
+    y="7.3" 
+    fill="#10b981" 
+    fontSize="1.8" 
+    fontWeight="bold" 
+    textAnchor="middle"
+    fillOpacity="1"
+  >
+    TDEE
+  </text>
+  
+  <!-- Calculator buttons - 2x3 grid -->
+  <circle cx="7" cy="11" r="1" fill="white" />
+  <circle cx="11" cy="11" r="1" fill="white" />
+  <circle cx="7" cy="14" r="1" fill="white" />
+  <circle cx="11" cy="14" r="1" fill="white" />
+  <circle cx="7" cy="17" r="1" fill="white" />
+  <circle cx="11" cy="17" r="1" fill="white" />
+  
+  <!-- Muscular arm coming from the calculator side -->
+  <g>
+    <!-- Bicep and forearm -->
+    <path 
+      d="M14 9C16 7 18 6.5 21 9" 
+      stroke="white" 
+      strokeWidth="2" 
+      strokeLinecap="round"
+    />
+    <path 
+      d="M14 9C14 11 15 13 18 12.5" 
+      stroke="white" 
+      strokeWidth="2" 
+      strokeLinecap="round"
+    />
+    <path 
+      d="M18 12.5C20 12 22 9 21 9" 
+      stroke="white" 
+      strokeWidth="2" 
+      strokeLinecap="round"
+    />
+    
+    <!-- Bicep highlight/definition -->
+    <path 
+      d="M16.5 10C17.5 9.3 18.5 9.3 19.5 10" 
+      stroke="white" 
+      strokeWidth="0.75" 
+      strokeLinecap="round"
+    />
+    
+    <!-- Hand/fist -->
+    <circle 
+      cx="21" 
+      cy="9" 
+      r="1.5" 
+      fill="white" 
+      opacity="0.9"
+    />
+  </g>
+  
+  <!-- Define the gradient -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#10b981" />
+      <stop offset="100%" stopColor="#059669" />
+    </linearGradient>
+  </defs>
+</svg> 

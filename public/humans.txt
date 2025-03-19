@@ -1,0 +1,12 @@
+/* TEAM */
+Creator: TDEE Calculator Team
+Site: https://tdeecalculator.health
+Contact: contact@tdeecalculator.health
+Twitter: @tdeecalculator
+Location: Global
+
+/* SITE */
+Last update: 2024-05-01
+Standards: HTML5, CSS3, JavaScript
+Components: Next.js, React, Tailwind CSS
+Software: Visual Studio Code, Vercel 
