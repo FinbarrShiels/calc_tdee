@@ -198,6 +198,13 @@ export default function TdeeCalculatorForm() {
           }
         `}</style>
         
+        {/* Form Error Message */}
+        {showValidation && Object.keys(form.formState.errors).length > 0 && (
+          <div className="p-3 bg-red-50 border border-red-200 rounded-md mb-4">
+            <p className="text-red-600 text-sm font-medium">Please complete all required fields to calculate your TDEE.</p>
+          </div>
+        )}
+        
         {/* Unit System Toggle */}
         <FormField
           control={form.control}
@@ -229,7 +236,6 @@ export default function TdeeCalculatorForm() {
                   </div>
                 </div>
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -254,7 +260,6 @@ export default function TdeeCalculatorForm() {
                     value={field.value || ''} 
                   />
                 </FormControl>
-                {showValidation && <FormMessage />}
               </FormItem>
             )}
           />
@@ -277,7 +282,6 @@ export default function TdeeCalculatorForm() {
                     />
                   </FormControl>
                 </div>
-                {showValidation && <FormMessage />}
               </FormItem>
             )}
           />
@@ -302,7 +306,6 @@ export default function TdeeCalculatorForm() {
                       value={field.value || ''} 
                     />
                   </FormControl>
-                  {showValidation && <FormMessage />}
                 </FormItem>
               )}
             />
@@ -327,7 +330,6 @@ export default function TdeeCalculatorForm() {
                           value={field.value || ''} 
                         />
                       </FormControl>
-                      {showValidation && <FormMessage />}
                     </FormItem>
                   )}
                 />
@@ -345,7 +347,6 @@ export default function TdeeCalculatorForm() {
                           value={field.value || ''} 
                         />
                       </FormControl>
-                      {showValidation && <FormMessage />}
                     </FormItem>
                   )}
                 />
@@ -373,7 +374,6 @@ export default function TdeeCalculatorForm() {
                       value={field.value || ''} 
                     />
                   </FormControl>
-                  {showValidation && <FormMessage />}
                 </FormItem>
               )}
             />
@@ -396,7 +396,6 @@ export default function TdeeCalculatorForm() {
                       value={field.value || ''} 
                     />
                   </FormControl>
-                  {showValidation && <FormMessage />}
                 </FormItem>
               )}
             />
@@ -420,7 +419,6 @@ export default function TdeeCalculatorForm() {
                     />
                   </FormControl>
                 </div>
-                {showValidation && <FormMessage />}
               </FormItem>
             )}
           />
@@ -445,7 +443,6 @@ export default function TdeeCalculatorForm() {
                     }}
                   />
                 </FormControl>
-                {showValidation && <FormMessage />}
               </FormItem>
             )}
           />
