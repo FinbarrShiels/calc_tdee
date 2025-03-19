@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
+// Optimize font loading with display:swap to prevent blocking
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
@@ -105,7 +106,12 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1" 
         />
-        {/* Connect to required domains */}
+        
+        {/* Optimize resource loading with preconnect */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -114,23 +120,34 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+      </head>
+      <body
+        className={`${roboto.variable} font-sans antialiased bg-zinc-50`}
+        suppressHydrationWarning
+      >
+        {children}
         
-        {/* Analytics scripts */}
+        {/* Load non-critical scripts with afterInteractive strategy */}
         <Script
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-3BJFR4W8KJ`}
         />
-        <Script id="google-analytics" strategy="lazyOnload">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
-            gtag('config', 'G-3BJFR4W8KJ');
+            gtag('config', 'G-3BJFR4W8KJ', {
+              send_page_view: false,
+              transport_type: 'beacon'
+            });
+            window.addEventListener('load', function() {
+              gtag('event', 'page_view');
+            });
           `}
         </Script>
         
-        {/* AdSense script - modified to follow their recommended implementation */}
+        {/* Defer AdSense until after page is interactive */}
         <Script
           id="adsbygoogle-script"
           strategy="lazyOnload"
@@ -145,12 +162,8 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="lazyOnload"
         />
-      </head>
-      <body
-        className={`${roboto.variable} font-sans antialiased bg-zinc-50`}
-        suppressHydrationWarning
-      >
-        {children}
+        
+        {/* Load analytics last */}
         <SpeedInsights 
           debug={process.env.NODE_ENV === 'development'} 
           sampleRate={100}
