@@ -1,12 +1,12 @@
 import { useState, useCallback, useEffect } from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { 
-  Sheet, 
-  SheetContent, 
-  SheetHeader, 
-  SheetTitle,
-  SheetTrigger 
-} from "@/components/ui/sheet";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { 
   Select,
@@ -104,10 +104,10 @@ export function SheetSelect({
     );
   }
 
-  // Use iOS-style sheet on mobile
+  // Use centered dialog on mobile (Material Design style)
   return (
-    <Sheet open={open} onOpenChange={handleOpenChange}>
-      <SheetTrigger asChild>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogTrigger asChild>
         <Button
           variant="outline"
           className={`w-full flex justify-between items-center p-2 text-left text-sm h-9 compact-input ${!hasValue && showValidation ? 'border-red-500' : ''}`}
@@ -116,55 +116,48 @@ export function SheetSelect({
           <span className="truncate">{selectedOption ? selectedOption.label : placeholder}</span>
           <ChevronDown className="h-4 w-4 opacity-50" />
         </Button>
-      </SheetTrigger>
+      </DialogTrigger>
       <style jsx global>{`
-        /* iOS-style sheet animation and styling */
-        .ios-sheet {
-          animation: ios-slide-up 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-          border-top-left-radius: 14px !important;
-          border-top-right-radius: 14px !important;
-          box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12) !important;
+        /* Material Design style dialog animation and styling */
+        .material-dialog {
+          animation: scale-fade-in 0.25s ease-out forwards;
+          max-width: 90% !important;
+          width: 90% !important;
+          border-radius: 8px !important;
+          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 
+                      0 24px 38px 3px rgba(0, 0, 0, 0.14), 
+                      0 9px 46px 8px rgba(0, 0, 0, 0.12) !important;
         }
         
-        @keyframes ios-slide-up {
+        @keyframes scale-fade-in {
           from {
-            transform: translateY(100%);
+            opacity: 0;
+            transform: scale(0.9);
           }
           to {
-            transform: translateY(0);
+            opacity: 1;
+            transform: scale(1);
           }
         }
         
-        .ios-pill {
-          width: 36px;
-          height: 5px;
-          border-radius: 3px;
-          background-color: #e0e0e0;
-          margin: 6px auto;
-        }
-        
-        .ios-option {
+        .material-option {
           transition: background-color 0.2s ease;
         }
         
-        .ios-option:active {
+        .material-option:active {
           background-color: rgba(0, 0, 0, 0.05);
         }
       `}</style>
-      <SheetContent 
-        side="bottom" 
-        className="p-0 rounded-t-xl h-auto max-h-[85vh] overflow-hidden border-t-0 ios-sheet"
-      >
-        <div className="ios-pill" />
-        <SheetHeader className="px-4 py-3 border-b sticky top-0 bg-white z-10">
-          <SheetTitle className="text-center">{title}</SheetTitle>
-        </SheetHeader>
-        <div className="overflow-y-auto max-h-[calc(85vh-6rem)] py-1 bg-gray-50">
+      <DialogContent className="p-0 overflow-hidden material-dialog border-0">
+        <DialogHeader className="px-4 py-3 border-b sticky top-0 bg-white z-10">
+          <DialogTitle className="text-center">{title}</DialogTitle>
+        </DialogHeader>
+        <div className="overflow-y-auto max-h-[60vh] py-1">
           {options.map((option) => (
             <button
               key={option.value}
               className={cn(
-                "w-full flex items-center justify-between text-left px-5 py-4 transition-colors ios-option bg-white border-b border-gray-100 focus:outline-none",
+                "w-full flex items-center justify-between text-left px-5 py-3 transition-colors material-option focus:outline-none",
                 option.value === value ? "bg-green-50" : ""
               )}
               onClick={() => handleValueChange(option.value)}
@@ -187,15 +180,15 @@ export function SheetSelect({
             </button>
           ))}
         </div>
-        <div className="p-4 bg-white border-t sticky bottom-0 z-10">
+        <div className="p-4 bg-gray-50 border-t flex justify-end">
           <Button
-            className="w-full bg-green-700 hover:bg-green-800 text-white font-medium rounded-full h-12"
+            className="bg-green-700 hover:bg-green-800 text-white font-medium px-6"
             onClick={() => handleOpenChange(false)}
           >
             Done
           </Button>
         </div>
-      </SheetContent>
-    </Sheet>
+      </DialogContent>
+    </Dialog>
   );
 } 
