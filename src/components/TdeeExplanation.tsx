@@ -76,26 +76,23 @@ export default function TdeeExplanation() {
       <div>
         <h3 className="text-xl font-semibold mb-4 text-green-700">Components of TDEE</h3>
         <p className="mb-4">
-          Total Daily Energy Expenditure (TDEE) is the total number of calories your body burns in a day. 
-          It consists of several components:
+          Total Daily Energy Expenditure (TDEE) is the number of calories you burn per day. 
+          Understanding your TDEE is essential for managing your weight, as it helps you 
+          determine how many calories you need to consume to maintain, lose, or gain weight.
         </p>
-        <ul className="list-disc pl-5 space-y-3">
-          <li>
-            <span className="font-medium">Basal Metabolic Rate (BMR):</span> The energy needed to maintain 
-            basic bodily functions at rest (60-70% of TDEE).
-          </li>
-          <li>
-            <span className="font-medium">Physical Activity:</span> Energy burned during exercise and 
-            daily movement (15-30% of TDEE).
-          </li>
-          <li>
-            <span className="font-medium">Thermic Effect of Food (TEF):</span> Energy used to digest, 
-            absorb, and process food (10% of TDEE).
-          </li>
+        <p className="mb-4">
+          Your TDEE is calculated based on several factors:
+        </p>
+        <ul className="list-disc pl-5 mb-4">
+          <li>Basal Metabolic Rate (BMR): The calories your body needs at complete rest</li>
+          <li>Physical Activity: How active you are in your daily life</li>
+          <li>Thermic Effect of Food: Calories burned during digestion</li>
+          <li>Non-Exercise Activity Thermogenesis: Calories burned through fidgeting, standing, etc.</li>
         </ul>
-        <p className="mt-4">
-          Our calculator uses the Mifflin-St Jeor equation to estimate BMR, then applies an activity 
-          multiplier based on your activity level to determine your TDEE.
+        <p>
+          By knowing your TDEE, you can make informed decisions about your nutrition and 
+          fitness goals. For weight loss, eat fewer calories than your TDEE; for weight gain, 
+          eat more; and for maintenance, eat roughly the same amount.
         </p>
       </div>
       

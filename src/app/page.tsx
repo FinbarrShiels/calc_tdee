@@ -5,15 +5,11 @@ import dynamic from 'next/dynamic';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from 'next/script';
+import ExplanationSection from '@/components/ExplanationSection';
 
-// Dynamically import non-critical components
+// Dynamically import non-critical components with SSR enabled
 const TdeeCalculatorForm = dynamic(() => import('@/components/TdeeCalculatorForm'), {
-  ssr: true,
   loading: () => <div className="min-h-[400px] flex items-center justify-center">Loading calculator...</div>
-});
-
-const TdeeExplanation = dynamic(() => import('@/components/TdeeExplanation'), {
-  ssr: false // Load this component only on client-side after initial render
 });
 
 export default function Home() {
@@ -132,30 +128,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <section className="mt-12">
-            <h2 className="text-2xl font-bold text-green-800 mb-6">What is TDEE?</h2>
-            <div className="prose max-w-none text-gray-800">
-              <p className="mb-4">
-                Total Daily Energy Expenditure (TDEE) is the number of calories you burn per day. 
-                Understanding your TDEE is essential for managing your weight, as it helps you 
-                determine how many calories you need to consume to maintain, lose, or gain weight.
-              </p>
-              <p className="mb-4">
-                Your TDEE is calculated based on several factors:
-              </p>
-              <ul className="list-disc pl-5 mb-4">
-                <li>Basal Metabolic Rate (BMR): The calories your body needs at complete rest</li>
-                <li>Physical Activity: How active you are in your daily life</li>
-                <li>Thermic Effect of Food: Calories burned during digestion</li>
-                <li>Non-Exercise Activity Thermogenesis: Calories burned through fidgeting, standing, etc.</li>
-              </ul>
-              <p>
-                By knowing your TDEE, you can make informed decisions about your nutrition and 
-                fitness goals. For weight loss, eat fewer calories than your TDEE; for weight gain, 
-                eat more; and for maintenance, eat roughly the same amount.
-              </p>
-            </div>
-          </section>
+          <ExplanationSection />
         </div>
 
         <Footer />
