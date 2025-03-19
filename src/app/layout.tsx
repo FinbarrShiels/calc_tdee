@@ -1,84 +1,124 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const roboto = Roboto({
-  weight: ['400', '500', '700'],
   subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
   variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "TDEE Calculator - Calculate Your Total Daily Energy Expenditure",
-    template: "%s | TDEE Calculator",
+    default: "TDEE Calculator - Calculate Your Daily Calorie Needs",
+    template: "%s | TDEE Calculator"
   },
-  description: "Free TDEE calculator to find your Total Daily Energy Expenditure and BMR. Plan your weight loss, maintenance or muscle gain with personalized macronutrients. The most accurate calorie calculator online.",
-  keywords: "TDEE calculator, total daily energy expenditure, calorie calculator, BMR calculator, basal metabolic rate, maintenance calories, daily calorie needs, energy expenditure, activity multiplier, BMI calculator, body mass index, fitness calculator, metabolism calculator, Mifflin-St Jeor formula, Harris-Benedict formula, Katch-McArdle formula, lean body mass, body composition, weight loss calculator, macro calculator",
+  description: "Calculate your Total Daily Energy Expenditure (TDEE) and Basal Metabolic Rate (BMR) with our accurate calculator. Get personalized macronutrient recommendations.",
+  keywords: ["TDEE calculator", "total daily energy expenditure", "BMR calculator", "calorie calculator", "macronutrient calculator", "weight loss calculator", "fitness calculator"],
   authors: [{ name: "TDEE Calculator" }],
   creator: "TDEE Calculator",
   publisher: "TDEE Calculator",
-  metadataBase: new URL("https://tdeecalculator.health"),
+  formatDetection: {
+    email: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://tdee-calc.vercel.app'),
   alternates: {
-    canonical: "/",
+    canonical: '/',
   },
   openGraph: {
     title: "TDEE Calculator - Calculate Your Daily Calorie Needs",
-    description: "Free TDEE calculator to find your Total Daily Energy Expenditure and BMR. Plan your weight loss, maintenance or muscle gain with personalized macronutrients. The most accurate calorie calculator online.",
-    url: "https://tdeecalculator.health/",
-    siteName: "TDEE Calculator",
-    locale: "en_US",
-    type: "website",
+    description: "Calculate your Total Daily Energy Expenditure (TDEE) and Basal Metabolic Rate (BMR) with our accurate calculator. Get personalized macronutrient recommendations.",
+    url: 'https://tdee-calc.vercel.app',
+    siteName: 'TDEE Calculator',
+    locale: 'en_US',
+    type: 'website',
     images: [
       {
-        url: "https://tdeecalculator.health/og-image.jpg",
+        url: '/og-image.png', 
         width: 1200,
         height: 630,
-        alt: "TDEE Calculator Preview",
-      },
+        alt: 'TDEE Calculator',
+      }
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "TDEE Calculator - Calculate Your Daily Calorie Needs",
-    description: "Free TDEE calculator to find your Total Daily Energy Expenditure and BMR. Plan your weight loss, maintenance or muscle gain with personalized macronutrients. The most accurate calorie calculator online.",
-    images: ["https://tdeecalculator.health/og-image.jpg"],
+    card: 'summary_large_image',
+    title: 'TDEE Calculator - Calculate Your Daily Calorie Needs',
+    description: 'Calculate your Total Daily Energy Expenditure (TDEE) and Basal Metabolic Rate (BMR) with our accurate calculator.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code', // Replace with your actual verification code
   },
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" }
+      { url: '/favicon.ico' },
+      { url: '/logo.svg', type: 'image/svg+xml' },
     ],
-    apple: { url: "/favicon.svg" },
+    apple: [
+      { url: '/logo.svg' },
+    ],
     other: [
-      { url: "/icon-192.svg", sizes: "192x192", type: "image/svg+xml" },
-      { url: "/icon-512.svg", sizes: "512x512", type: "image/svg+xml" },
+      {
+        rel: 'icon',
+        url: '/icon-192.svg',
+        type: 'image/svg+xml',
+        sizes: '192x192'
+      },
+      {
+        rel: 'icon',
+        url: '/icon-512.svg',
+        type: 'image/svg+xml',
+        sizes: '512x512'
+      }
     ],
   },
+  manifest: '/manifest.json',
+  applicationName: 'TDEE Calculator',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
-        {/* Google Analytics (GA4) - With no consent management */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX');
-            `
-          }}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1" 
         />
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`} // Replace with your actual Google Analytics ID
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX'); // Replace with your actual Google Analytics ID
+          `}
+        </Script>
       </head>
-      <body className={`${roboto.variable} font-sans antialiased bg-zinc-50`}>
+      <body
+        className={`${roboto.variable} font-sans antialiased bg-zinc-50`}
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>

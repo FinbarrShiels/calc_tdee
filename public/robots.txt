@@ -1,6 +1,6 @@
+# Allow all crawlers
 User-agent: *
 Allow: /
-Disallow: /api/*
-Disallow: /_next/*
 
-Sitemap: https://tdeecalculator.health/sitemap.xml 
+# Sitemap location
+Sitemap: https://tdee-calc.vercel.app/sitemap.xml 
