@@ -131,6 +131,15 @@ export default function TdeeCalculatorForm() {
           /* Set consistent heights for form items to prevent layout shifts */
           .form-item-container {
             min-height: 70px;
+            display: flex;
+            flex-direction: column;
+          }
+          
+          /* Imperial units height container */
+          .imperial-height-container {
+            min-height: 70px;
+            display: flex;
+            flex-direction: column;
           }
           
           /* Make inputs smaller */
@@ -291,7 +300,7 @@ export default function TdeeCalculatorForm() {
               )}
             />
           ) : (
-            <div className="space-y-1 form-item-container">
+            <div className="imperial-height-container">
               <FormLabel className="small-label">Height (ft & in)</FormLabel>
               <div className="grid grid-cols-2 gap-2">
                 <FormField
