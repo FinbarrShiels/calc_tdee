@@ -435,7 +435,7 @@ export default function TdeeCalculatorForm() {
 
         <Button 
           type="submit" 
-          className="w-full bg-green-600 hover:bg-green-700 transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98 active:shadow-inner mt-4"
+          className="w-full bg-green-700 hover:bg-green-800 transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98 active:shadow-inner mt-4"
           disabled={isSubmitting}
         >
           {isSubmitting ? "Calculating..." : "Calculate TDEE"}
