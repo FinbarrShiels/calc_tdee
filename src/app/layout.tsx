@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   description: "Calculate your Total Daily Energy Expenditure (TDEE) and Basal Metabolic Rate (BMR) with our accurate calculator. Get personalized macronutrient recommendations.",
   keywords: [
     "TDEE calculator", 
+    "TDEE",
     "Total Daily Energy Expenditure", 
     "Calorie calculator", 
     "BMR", 
