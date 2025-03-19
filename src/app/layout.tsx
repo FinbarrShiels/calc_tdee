@@ -9,6 +9,7 @@ const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
   variable: "--font-roboto",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -104,11 +105,27 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1" 
         />
+        {/* Preload critical fonts */}
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+          as="style"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        {/* Preconnect to required domains */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        
         <Script
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src={`https://www.googletagmanager.com/gtag/js?id=G-3BJFR4W8KJ`}
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -121,7 +138,7 @@ export default function RootLayout({
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1990518122312332"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </head>
       <body
@@ -129,7 +146,18 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
-        <SpeedInsights debug={process.env.NODE_ENV === 'development'} />
+        <SpeedInsights 
+          debug={process.env.NODE_ENV === 'development'} 
+          sampleRate={100}
+          beforeSend={(event) => {
+            // Always capture data in development
+            if (process.env.NODE_ENV === 'development') {
+              return event;
+            }
+            // Sample 100% of production data
+            return event;
+          }}
+        />
         <Analytics />
       </body>
     </html>
