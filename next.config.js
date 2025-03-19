@@ -11,13 +11,12 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['@/components/ui'],
+    optimizeFonts: true,
   },
   // Ignore ESLint errors during build for Vercel deployment
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Add trailing slash for better compatibility with static hosting
-  trailingSlash: true,
 };
 
 module.exports = nextConfig; 

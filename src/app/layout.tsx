@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
@@ -102,9 +103,8 @@ export default function RootLayout({
       <head>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, minimum-scale=1" 
+          content="width=device-width, initial-scale=1, maximum-scale=1" 
         />
-        <meta name="theme-color" content="#16a34a" />
         {/* Preload critical fonts */}
         <link
           rel="preload"
@@ -146,3 +146,20 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <SpeedInsights 
+          debug={process.env.NODE_ENV === 'development'} 
+          sampleRate={100}
+          beforeSend={(event) => {
+            // Always capture data in development
+            if (process.env.NODE_ENV === 'development') {
+              return event;
+            }
+            // Sample 100% of production data
+            return event;
+          }}
+        />
+        <Analytics />
+      </body>
+    </html>
+  );
+}
