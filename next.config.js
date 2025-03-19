@@ -9,7 +9,8 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
-    optimizeCss: true,
+    // Disable optimizeCss as it's causing build issues with critters
+    optimizeCss: false,
     optimizePackageImports: ['@/components/ui'],
   },
   // Ignore ESLint errors during build for Vercel deployment
