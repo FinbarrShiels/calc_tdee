@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     default: "TDEE Calculator - Calculate Your Daily Calorie Needs",
     template: "%s | TDEE Calculator"
   },
-  description: "Calculate your Total Daily Energy Expenditure (TDEE) and Basal Metabolic Rate (BMR) with our accurate calculator. Get personalized macronutrient recommendations.",
+  description: "Calculate your TDEE (Total Daily Energy Expenditure) and BMR with our accurate calculator. Get personalized calorie and macro recommendations.",
   keywords: [
     "TDEE calculator", 
     "TDEE",
