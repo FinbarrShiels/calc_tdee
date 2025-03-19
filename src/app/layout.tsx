@@ -165,7 +165,20 @@ export default function RootLayout({
           strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
-              (adsbygoogle = window.adsbygoogle || []).push({});
+              try {
+                // Only initialize ads if they haven't been initialized yet
+                if (!window.adsbygoogle) {
+                  window.adsbygoogle = [];
+                } else if (!Array.isArray(window.adsbygoogle)) {
+                  window.adsbygoogle = [window.adsbygoogle];
+                }
+                // Wait until the script is fully loaded before pushing
+                setTimeout(() => {
+                  window.adsbygoogle.push({});
+                }, 100);
+              } catch (e) {
+                console.error('AdSense error:', e);
+              }
             `
           }}
         />
@@ -173,6 +186,9 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1990518122312332"
           crossOrigin="anonymous"
           strategy="lazyOnload"
+          onLoad={() => {
+            console.log('AdSense script loaded');
+          }}
         />
         
         {/* Load analytics last */}

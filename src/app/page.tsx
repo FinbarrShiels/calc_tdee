@@ -18,7 +18,9 @@ const TdeeCalculatorForm = dynamic(() => import('@/components/TdeeCalculatorForm
 });
 
 // Mark this component as generating static HTML
-export const dynamic = 'force-static';
+export const generateStaticParams = () => {
+  return [];
+};
 
 export default function Home() {
   return (
