@@ -11,6 +11,8 @@ export default function Footer() {
           <span className="hidden sm:inline">|</span>
           <Link href="/privacy" className="hover:underline whitespace-nowrap">Privacy Policy</Link>
           <span className="hidden sm:inline">|</span>
+          <Link href="/terms" className="hover:underline whitespace-nowrap">Terms of Use</Link>
+          <span className="hidden sm:inline">|</span>
           <Link href="/faq" className="hover:underline whitespace-nowrap">FAQ</Link>
         </div>
         <div className="text-center mt-4 text-sm opacity-75">
