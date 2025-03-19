@@ -1,3 +1,6 @@
+// Add dynamic export for static builds
+export const dynamic = "force-static";
+
 export async function GET() {
   return new Response(
     JSON.stringify({
