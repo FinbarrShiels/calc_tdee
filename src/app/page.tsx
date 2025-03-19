@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import dynamic from 'next/dynamic';
+import { default as nextDynamic } from 'next/dynamic';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from 'next/script';
 import TdeeExplanationClient from '@/components/TdeeExplanationClient';
 
 // Dynamically import non-critical components with higher priority
-const TdeeCalculatorForm = dynamic(() => import('@/components/TdeeCalculatorForm'), {
+const TdeeCalculatorForm = nextDynamic(() => import('@/components/TdeeCalculatorForm'), {
   ssr: true,
   loading: () => (
     <div className="min-h-[400px] flex items-center justify-center">

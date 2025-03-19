@@ -15,7 +15,6 @@ const nextConfig = {
   
   // Improve performance
   compress: true, // Enable gzip compression
-  swcMinify: true, // Use SWC minifier instead of Terser
   poweredByHeader: false, // Remove unnecessary headers
   
   experimental: {
@@ -24,7 +23,6 @@ const nextConfig = {
     optimizePackageImports: ['@/components/ui'],
     
     // Additional performance optimizations
-    optimizeFonts: true,
     scrollRestoration: true,
     
     // New optimizations for better FCP and LCP
