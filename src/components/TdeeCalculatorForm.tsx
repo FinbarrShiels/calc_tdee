@@ -128,7 +128,7 @@ export default function TdeeCalculatorForm() {
             font-size: 16px !important; /* Prevents iOS zoom */
           }
           
-          /* Set consistent heights for form items to prevent layout shifts */
+          /* Set consistent heights and spacing for form items */
           .form-item-container {
             min-height: 70px;
             display: flex;
@@ -150,10 +150,15 @@ export default function TdeeCalculatorForm() {
             padding-bottom: 0;
           }
           
-          /* Make form labels smaller */
+          /* Make form labels smaller and add consistent spacing */
           .small-label {
             font-size: 0.85rem;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
+          }
+          
+          /* Ensure consistent spacing for form controls */
+          .form-control-wrapper {
+            margin-top: 4px;
           }
           
           /* Full-screen select on mobile */
@@ -201,7 +206,7 @@ export default function TdeeCalculatorForm() {
             <FormItem className="mb-4">
               <FormLabel className="small-label">Unit System</FormLabel>
               <FormControl>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 mt-1">
                   <div
                     className={`flex items-center justify-center p-2 rounded-md border cursor-pointer transition-colors text-sm ${
                       field.value === "metric" 
@@ -242,7 +247,7 @@ export default function TdeeCalculatorForm() {
                     type="number" 
                     placeholder="Age" 
                     className={cn(
-                      "compact-input",
+                      "compact-input mt-1",
                       showValidation && !field.value && "border-red-500"
                     )}
                     {...field} 
@@ -260,16 +265,18 @@ export default function TdeeCalculatorForm() {
             render={({ field }) => (
               <FormItem className="form-item-container">
                 <FormLabel className="small-label">Gender</FormLabel>
-                <FormControl>
-                  <SheetSelect
-                    options={genderOptions}
-                    value={field.value || ""}
-                    onChange={field.onChange}
-                    placeholder="Select gender"
-                    title="Select Gender"
-                    showValidation={showValidation}
-                  />
-                </FormControl>
+                <div className="mt-1">
+                  <FormControl>
+                    <SheetSelect
+                      options={genderOptions}
+                      value={field.value || ""}
+                      onChange={field.onChange}
+                      placeholder="Select gender"
+                      title="Select Gender"
+                      showValidation={showValidation}
+                    />
+                  </FormControl>
+                </div>
                 {showValidation && <FormMessage />}
               </FormItem>
             )}
@@ -288,7 +295,7 @@ export default function TdeeCalculatorForm() {
                       type="number" 
                       placeholder="Height" 
                       className={cn(
-                        "compact-input",
+                        "compact-input mt-1",
                         showValidation && !field.value && "border-red-500"
                       )}
                       {...field} 
@@ -359,7 +366,7 @@ export default function TdeeCalculatorForm() {
                       type="number" 
                       placeholder="Weight" 
                       className={cn(
-                        "compact-input",
+                        "compact-input mt-1",
                         showValidation && !field.value && "border-red-500"
                       )}
                       {...field} 
@@ -382,7 +389,7 @@ export default function TdeeCalculatorForm() {
                       type="number" 
                       placeholder="Weight" 
                       className={cn(
-                        "compact-input",
+                        "compact-input mt-1",
                         showValidation && !field.value && "border-red-500"
                       )}
                       {...field} 
@@ -401,16 +408,18 @@ export default function TdeeCalculatorForm() {
             render={({ field }) => (
               <FormItem className="form-item-container">
                 <FormLabel className="small-label">Activity Level</FormLabel>
-                <FormControl>
-                  <SheetSelect
-                    options={activityLevels}
-                    value={field.value || ""}
-                    onChange={field.onChange}
-                    placeholder="Select activity"
-                    title="Select Activity Level"
-                    showValidation={showValidation}
-                  />
-                </FormControl>
+                <div className="mt-1">
+                  <FormControl>
+                    <SheetSelect
+                      options={activityLevels}
+                      value={field.value || ""}
+                      onChange={field.onChange}
+                      placeholder="Select activity"
+                      title="Select Activity Level"
+                      showValidation={showValidation}
+                    />
+                  </FormControl>
+                </div>
                 {showValidation && <FormMessage />}
               </FormItem>
             )}
@@ -427,7 +436,7 @@ export default function TdeeCalculatorForm() {
                   <Input 
                     type="number" 
                     placeholder="Body fat %" 
-                    className="compact-input"
+                    className="compact-input mt-1"
                     {...field} 
                     value={field.value || ''}
                     onChange={(e) => {
