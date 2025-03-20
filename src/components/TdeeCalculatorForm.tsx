@@ -140,6 +140,18 @@ export default function TdeeCalculatorForm() {
             min-height: 70px;
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
+          }
+          
+          /* Apply consistent form field positioning */
+          .form-item-container .small-label,
+          .imperial-height-container .small-label {
+            margin-bottom: 4px;
+          }
+          
+          /* Ensure grid wrapper has consistent alignment */
+          .imperial-height-container .grid {
+            margin-top: 4px;
           }
           
           /* Make inputs smaller */
@@ -246,20 +258,22 @@ export default function TdeeCalculatorForm() {
             control={form.control}
             name="age"
             render={({ field }) => (
-              <FormItem className="form-item-container">
+              <FormItem className="imperial-height-container">
                 <FormLabel className="small-label">Age</FormLabel>
-                <FormControl>
-                  <Input 
-                    type="number" 
-                    placeholder="Age" 
-                    className={cn(
-                      "compact-input mt-1",
-                      showValidation && !field.value && "border-red-500"
-                    )}
-                    {...field} 
-                    value={field.value || ''} 
-                  />
-                </FormControl>
+                <div className="mt-1">
+                  <FormControl>
+                    <Input 
+                      type="number" 
+                      placeholder="Age" 
+                      className={cn(
+                        "compact-input",
+                        showValidation && !field.value && "border-red-500"
+                      )}
+                      {...field} 
+                      value={field.value || ''} 
+                    />
+                  </FormControl>
+                </div>
               </FormItem>
             )}
           />
@@ -268,7 +282,7 @@ export default function TdeeCalculatorForm() {
             control={form.control}
             name="gender"
             render={({ field }) => (
-              <FormItem className="form-item-container">
+              <FormItem className="imperial-height-container">
                 <FormLabel className="small-label">Gender</FormLabel>
                 <div className="mt-1">
                   <FormControl>
@@ -411,7 +425,7 @@ export default function TdeeCalculatorForm() {
             control={form.control}
             name="activityLevel"
             render={({ field }) => (
-              <FormItem className="form-item-container">
+              <FormItem className="imperial-height-container">
                 <FormLabel className="small-label">Activity Level</FormLabel>
                 <div className="mt-1">
                   <FormControl>
@@ -434,21 +448,23 @@ export default function TdeeCalculatorForm() {
             control={form.control}
             name="bodyFatPercentage"
             render={({ field }) => (
-              <FormItem className="form-item-container">
+              <FormItem className="imperial-height-container">
                 <FormLabel className="small-label">Body Fat % (optional)</FormLabel>
-                <FormControl>
-                  <Input 
-                    type="number" 
-                    placeholder="Body fat %" 
-                    className="compact-input mt-1"
-                    {...field} 
-                    value={field.value || ''}
-                    onChange={(e) => {
-                      const value = e.target.value ? Number(e.target.value) : undefined;
-                      field.onChange(value);
-                    }}
-                  />
-                </FormControl>
+                <div className="mt-1">
+                  <FormControl>
+                    <Input 
+                      type="number" 
+                      placeholder="Body fat %" 
+                      className="compact-input"
+                      {...field} 
+                      value={field.value || ''}
+                      onChange={(e) => {
+                        const value = e.target.value ? Number(e.target.value) : undefined;
+                        field.onChange(value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
               </FormItem>
             )}
           />
