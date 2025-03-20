@@ -382,20 +382,22 @@ export default function TdeeCalculatorForm() {
               control={form.control}
               name="weightLbs"
               render={({ field }) => (
-                <FormItem className="form-item-container">
+                <FormItem className="imperial-height-container">
                   <FormLabel className="small-label">Weight (lbs)</FormLabel>
-                  <FormControl>
-                    <Input 
-                      type="number" 
-                      placeholder="Weight" 
-                      className={cn(
-                        "compact-input mt-1",
-                        showValidation && !field.value && "border-red-500"
-                      )}
-                      {...field} 
-                      value={field.value || ''} 
-                    />
-                  </FormControl>
+                  <div className="mt-1">
+                    <FormControl>
+                      <Input 
+                        type="number" 
+                        placeholder="Weight" 
+                        className={cn(
+                          "compact-input",
+                          showValidation && !field.value && "border-red-500"
+                        )}
+                        {...field} 
+                        value={field.value || ''} 
+                      />
+                    </FormControl>
+                  </div>
                 </FormItem>
               )}
             />

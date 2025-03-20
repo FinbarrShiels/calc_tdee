@@ -17,19 +17,19 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             <div className="flex items-center">
               <Logo />
-              <span className="font-bold text-xl text-[#284553]">TDEE Calculator</span>
+              <span className="font-bold text-xl text-gray-800">TDEE Calculator</span>
             </div>
           </Link>
 
           {/* Desktop menu - hidden on mobile */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/about" className="text-[#3D8A8F] hover:text-[#F3966D] transition-colors">
+            <Link href="/about" className="text-gray-600 hover:text-green-600 transition-colors">
               About
             </Link>
-            <Link href="/faq" className="text-[#3D8A8F] hover:text-[#F3966D] transition-colors">
+            <Link href="/faq" className="text-gray-600 hover:text-green-600 transition-colors">
               FAQ
             </Link>
-            <Link href="/contact" className="text-[#3D8A8F] hover:text-[#F3966D] transition-colors">
+            <Link href="/contact" className="text-gray-600 hover:text-green-600 transition-colors">
               Contact
             </Link>
           </div>
@@ -38,7 +38,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               type="button"
-              className="text-[#3D8A8F] hover:text-[#F3966D] focus:outline-none"
+              className="text-gray-600 hover:text-green-600 focus:outline-none"
               aria-label="Toggle menu"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
@@ -57,28 +57,28 @@ export default function Navbar() {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
               <Link
                 href="/"
-                className="block px-3 py-2 rounded-md text-base font-medium text-[#284553] hover:text-[#F3966D] hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/about"
-                className="block px-3 py-2 rounded-md text-base font-medium text-[#284553] hover:text-[#F3966D] hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/faq"
-                className="block px-3 py-2 rounded-md text-base font-medium text-[#284553] hover:text-[#F3966D] hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 FAQ
               </Link>
               <Link
                 href="/contact"
-                className="block px-3 py-2 rounded-md text-base font-medium text-[#284553] hover:text-[#F3966D] hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
