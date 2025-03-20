@@ -128,30 +128,26 @@ export default function TdeeCalculatorForm() {
             font-size: 16px !important; /* Prevents iOS zoom */
           }
           
-          /* Set consistent heights and spacing for form items */
-          .form-item-container {
-            min-height: 70px;
+          /* Fixed height form field container */
+          .fixed-height-field {
+            height: 84px;
+            position: relative;
             display: flex;
             flex-direction: column;
+            padding-bottom: 4px;
           }
           
-          /* Imperial units height container */
-          .imperial-height-container {
-            min-height: 70px;
+          /* Fixed label positioning */
+          .fixed-height-field .small-label {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+          }
+          
+          /* Fixed input positioning */
+          .fixed-height-field .input-wrapper {
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-          }
-          
-          /* Apply consistent form field positioning */
-          .form-item-container .small-label,
-          .imperial-height-container .small-label {
-            margin-bottom: 4px;
-          }
-          
-          /* Ensure grid wrapper has consistent alignment */
-          .imperial-height-container .grid {
-            margin-top: 4px;
           }
           
           /* Make inputs smaller */
@@ -160,17 +156,6 @@ export default function TdeeCalculatorForm() {
             min-height: 36px;
             padding-top: 0;
             padding-bottom: 0;
-          }
-          
-          /* Make form labels smaller and add consistent spacing */
-          .small-label {
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-          }
-          
-          /* Ensure consistent spacing for form controls */
-          .form-control-wrapper {
-            margin-top: 4px;
           }
           
           /* Full-screen select on mobile */
@@ -254,65 +239,19 @@ export default function TdeeCalculatorForm() {
 
         {/* 2x2 Grid for all form fields on both mobile and desktop */}
         <div className="grid grid-cols-2 gap-x-3 gap-y-2">
-          <FormField
-            control={form.control}
-            name="age"
-            render={({ field }) => (
-              <FormItem className="imperial-height-container">
-                <FormLabel className="small-label">Age</FormLabel>
-                <div className="mt-1">
-                  <FormControl>
-                    <Input 
-                      type="number" 
-                      placeholder="Age" 
-                      className={cn(
-                        "compact-input",
-                        showValidation && !field.value && "border-red-500"
-                      )}
-                      {...field} 
-                      value={field.value || ''} 
-                    />
-                  </FormControl>
-                </div>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="gender"
-            render={({ field }) => (
-              <FormItem className="imperial-height-container">
-                <FormLabel className="small-label">Gender</FormLabel>
-                <div className="mt-1">
-                  <FormControl>
-                    <SheetSelect
-                      options={genderOptions}
-                      value={field.value || ""}
-                      onChange={field.onChange}
-                      placeholder="Select gender"
-                      title="Select Gender"
-                      showValidation={showValidation}
-                    />
-                  </FormControl>
-                </div>
-              </FormItem>
-            )}
-          />
-
-          {/* Conditional Height Fields Based on Unit System */}
-          {unitSystem === "metric" ? (
-            <FormField
-              control={form.control}
-              name="heightCm"
-              render={({ field }) => (
-                <FormItem className="imperial-height-container">
-                  <FormLabel className="small-label">Height (cm)</FormLabel>
-                  <div className="mt-1">
+          {/* Age Field - Fixed Height */}
+          <div className="fixed-height-field">
+            <FormLabel className="small-label">Age</FormLabel>
+            <div className="input-wrapper">
+              <FormField
+                control={form.control}
+                name="age"
+                render={({ field }) => (
+                  <FormItem className="h-full">
                     <FormControl>
                       <Input 
                         type="number" 
-                        placeholder="Height" 
+                        placeholder="Age" 
                         className={cn(
                           "compact-input",
                           showValidation && !field.value && "border-red-500"
@@ -321,153 +260,212 @@ export default function TdeeCalculatorForm() {
                         value={field.value || ''} 
                       />
                     </FormControl>
-                  </div>
-                </FormItem>
-              )}
-            />
-          ) : (
-            <FormField
-              control={form.control}
-              name="heightFeet"
-              render={({ field: feetField }) => (
-                <FormItem className="imperial-height-container">
-                  <FormLabel className="small-label">Height (ft & in)</FormLabel>
-                  <div className="grid grid-cols-2 gap-2 mt-1">
-                    <FormItem className="space-y-0">
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
+          {/* Gender Field - Fixed Height */}
+          <div className="fixed-height-field">
+            <FormLabel className="small-label">Gender</FormLabel>
+            <div className="input-wrapper">
+              <FormField
+                control={form.control}
+                name="gender"
+                render={({ field }) => (
+                  <FormItem className="h-full">
+                    <FormControl>
+                      <SheetSelect
+                        options={genderOptions}
+                        value={field.value || ""}
+                        onChange={field.onChange}
+                        placeholder="Select gender"
+                        title="Select Gender"
+                        showValidation={showValidation}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
+          {/* Height Field - Conditional but Always Same Height */}
+          <div className="fixed-height-field">
+            <FormLabel className="small-label">
+              {unitSystem === "metric" ? "Height (cm)" : "Height (ft & in)"}
+            </FormLabel>
+            <div className="input-wrapper">
+              {unitSystem === "metric" ? (
+                <FormField
+                  control={form.control}
+                  name="heightCm"
+                  render={({ field }) => (
+                    <FormItem className="h-full">
                       <FormControl>
                         <Input 
                           type="number" 
-                          placeholder="Feet" 
+                          placeholder="Height" 
                           className={cn(
                             "compact-input",
-                            showValidation && !feetField.value && "border-red-500"
+                            showValidation && !field.value && "border-red-500"
                           )}
-                          {...feetField} 
-                          value={feetField.value || ''} 
+                          {...field} 
+                          value={field.value || ''} 
                         />
                       </FormControl>
                     </FormItem>
-                    <FormField
-                      control={form.control}
-                      name="heightInches"
-                      render={({ field: inchesField }) => (
-                        <FormItem className="space-y-0">
-                          <FormControl>
-                            <Input 
-                              type="number" 
-                              placeholder="Inches" 
-                              className="compact-input"
-                              {...inchesField} 
-                              value={inchesField.value || ''} 
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </FormItem>
+                  )}
+                />
+              ) : (
+                <div className="grid grid-cols-2 gap-2 h-full">
+                  <FormField
+                    control={form.control}
+                    name="heightFeet"
+                    render={({ field }) => (
+                      <FormItem className="h-full">
+                        <FormControl>
+                          <Input 
+                            type="number" 
+                            placeholder="Feet" 
+                            className={cn(
+                              "compact-input",
+                              showValidation && !field.value && "border-red-500"
+                            )}
+                            {...field} 
+                            value={field.value || ''} 
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="heightInches"
+                    render={({ field }) => (
+                      <FormItem className="h-full">
+                        <FormControl>
+                          <Input 
+                            type="number" 
+                            placeholder="Inches" 
+                            className="compact-input"
+                            {...field} 
+                            value={field.value || ''} 
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
               )}
-            />
-          )}
+            </div>
+          </div>
 
-          {/* Conditional Weight Fields Based on Unit System */}
-          {unitSystem === "metric" ? (
-            <FormField
-              control={form.control}
-              name="weightKg"
-              render={({ field }) => (
-                <FormItem className="imperial-height-container">
-                  <FormLabel className="small-label">Weight (kg)</FormLabel>
-                  <div className="mt-1">
+          {/* Weight Field - Conditional but Always Same Height */}
+          <div className="fixed-height-field">
+            <FormLabel className="small-label">
+              {unitSystem === "metric" ? "Weight (kg)" : "Weight (lbs)"}
+            </FormLabel>
+            <div className="input-wrapper">
+              {unitSystem === "metric" ? (
+                <FormField
+                  control={form.control}
+                  name="weightKg"
+                  render={({ field }) => (
+                    <FormItem className="h-full">
+                      <FormControl>
+                        <Input 
+                          type="number" 
+                          placeholder="Weight" 
+                          className={cn(
+                            "compact-input",
+                            showValidation && !field.value && "border-red-500"
+                          )}
+                          {...field} 
+                          value={field.value || ''} 
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              ) : (
+                <FormField
+                  control={form.control}
+                  name="weightLbs"
+                  render={({ field }) => (
+                    <FormItem className="h-full">
+                      <FormControl>
+                        <Input 
+                          type="number" 
+                          placeholder="Weight" 
+                          className={cn(
+                            "compact-input",
+                            showValidation && !field.value && "border-red-500"
+                          )}
+                          {...field} 
+                          value={field.value || ''} 
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Activity Level - Fixed Height */}
+          <div className="fixed-height-field">
+            <FormLabel className="small-label">Activity Level</FormLabel>
+            <div className="input-wrapper">
+              <FormField
+                control={form.control}
+                name="activityLevel"
+                render={({ field }) => (
+                  <FormItem className="h-full">
+                    <FormControl>
+                      <SheetSelect
+                        options={activityLevels}
+                        value={field.value || ""}
+                        onChange={field.onChange}
+                        placeholder="Select activity"
+                        title="Select Activity Level"
+                        showValidation={showValidation}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
+          {/* Body Fat - Fixed Height */}
+          <div className="fixed-height-field">
+            <FormLabel className="small-label">Body Fat % (optional)</FormLabel>
+            <div className="input-wrapper">
+              <FormField
+                control={form.control}
+                name="bodyFatPercentage"
+                render={({ field }) => (
+                  <FormItem className="h-full">
                     <FormControl>
                       <Input 
                         type="number" 
-                        placeholder="Weight" 
-                        className={cn(
-                          "compact-input",
-                          showValidation && !field.value && "border-red-500"
-                        )}
+                        placeholder="Body fat %" 
+                        className="compact-input"
                         {...field} 
-                        value={field.value || ''} 
+                        value={field.value || ''}
+                        onChange={(e) => {
+                          const value = e.target.value ? Number(e.target.value) : undefined;
+                          field.onChange(value);
+                        }}
                       />
                     </FormControl>
-                  </div>
-                </FormItem>
-              )}
-            />
-          ) : (
-            <FormField
-              control={form.control}
-              name="weightLbs"
-              render={({ field }) => (
-                <FormItem className="imperial-height-container">
-                  <FormLabel className="small-label">Weight (lbs)</FormLabel>
-                  <div className="mt-1">
-                    <FormControl>
-                      <Input 
-                        type="number" 
-                        placeholder="Weight" 
-                        className={cn(
-                          "compact-input",
-                          showValidation && !field.value && "border-red-500"
-                        )}
-                        {...field} 
-                        value={field.value || ''} 
-                      />
-                    </FormControl>
-                  </div>
-                </FormItem>
-              )}
-            />
-          )}
-
-          <FormField
-            control={form.control}
-            name="activityLevel"
-            render={({ field }) => (
-              <FormItem className="imperial-height-container">
-                <FormLabel className="small-label">Activity Level</FormLabel>
-                <div className="mt-1">
-                  <FormControl>
-                    <SheetSelect
-                      options={activityLevels}
-                      value={field.value || ""}
-                      onChange={field.onChange}
-                      placeholder="Select activity"
-                      title="Select Activity Level"
-                      showValidation={showValidation}
-                    />
-                  </FormControl>
-                </div>
-              </FormItem>
-            )}
-          />
-
-          {/* Body Fat Percentage - Optional */}
-          <FormField
-            control={form.control}
-            name="bodyFatPercentage"
-            render={({ field }) => (
-              <FormItem className="imperial-height-container">
-                <FormLabel className="small-label">Body Fat % (optional)</FormLabel>
-                <div className="mt-1">
-                  <FormControl>
-                    <Input 
-                      type="number" 
-                      placeholder="Body fat %" 
-                      className="compact-input"
-                      {...field} 
-                      value={field.value || ''}
-                      onChange={(e) => {
-                        const value = e.target.value ? Number(e.target.value) : undefined;
-                        field.onChange(value);
-                      }}
-                    />
-                  </FormControl>
-                </div>
-              </FormItem>
-            )}
-          />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
         </div>
 
         <Button 
