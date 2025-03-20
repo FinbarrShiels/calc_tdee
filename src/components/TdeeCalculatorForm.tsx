@@ -292,20 +292,22 @@ export default function TdeeCalculatorForm() {
               control={form.control}
               name="heightCm"
               render={({ field }) => (
-                <FormItem className="form-item-container">
+                <FormItem className="imperial-height-container">
                   <FormLabel className="small-label">Height (cm)</FormLabel>
-                  <FormControl>
-                    <Input 
-                      type="number" 
-                      placeholder="Height" 
-                      className={cn(
-                        "compact-input mt-1",
-                        showValidation && !field.value && "border-red-500"
-                      )}
-                      {...field} 
-                      value={field.value || ''} 
-                    />
-                  </FormControl>
+                  <div className="mt-1">
+                    <FormControl>
+                      <Input 
+                        type="number" 
+                        placeholder="Height" 
+                        className={cn(
+                          "compact-input",
+                          showValidation && !field.value && "border-red-500"
+                        )}
+                        {...field} 
+                        value={field.value || ''} 
+                      />
+                    </FormControl>
+                  </div>
                 </FormItem>
               )}
             />
@@ -360,20 +362,22 @@ export default function TdeeCalculatorForm() {
               control={form.control}
               name="weightKg"
               render={({ field }) => (
-                <FormItem className="form-item-container">
+                <FormItem className="imperial-height-container">
                   <FormLabel className="small-label">Weight (kg)</FormLabel>
-                  <FormControl>
-                    <Input 
-                      type="number" 
-                      placeholder="Weight" 
-                      className={cn(
-                        "compact-input mt-1",
-                        showValidation && !field.value && "border-red-500"
-                      )}
-                      {...field} 
-                      value={field.value || ''} 
-                    />
-                  </FormControl>
+                  <div className="mt-1">
+                    <FormControl>
+                      <Input 
+                        type="number" 
+                        placeholder="Weight" 
+                        className={cn(
+                          "compact-input",
+                          showValidation && !field.value && "border-red-500"
+                        )}
+                        {...field} 
+                        value={field.value || ''} 
+                      />
+                    </FormControl>
+                  </div>
                 </FormItem>
               )}
             />
