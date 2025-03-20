@@ -326,13 +326,13 @@ export default function TdeeCalculatorForm() {
               )}
             />
           ) : (
-            <div className="imperial-height-container">
-              <FormLabel className="small-label">Height (ft & in)</FormLabel>
-              <div className="grid grid-cols-2 gap-2 mt-1">
-                <FormField
-                  control={form.control}
-                  name="heightFeet"
-                  render={({ field }) => (
+            <FormField
+              control={form.control}
+              name="heightFeet"
+              render={({ field: feetField }) => (
+                <FormItem className="imperial-height-container">
+                  <FormLabel className="small-label">Height (ft & in)</FormLabel>
+                  <div className="grid grid-cols-2 gap-2 mt-1">
                     <FormItem className="space-y-0">
                       <FormControl>
                         <Input 
@@ -340,34 +340,34 @@ export default function TdeeCalculatorForm() {
                           placeholder="Feet" 
                           className={cn(
                             "compact-input",
-                            showValidation && !field.value && "border-red-500"
+                            showValidation && !feetField.value && "border-red-500"
                           )}
-                          {...field} 
-                          value={field.value || ''} 
+                          {...feetField} 
+                          value={feetField.value || ''} 
                         />
                       </FormControl>
                     </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="heightInches"
-                  render={({ field }) => (
-                    <FormItem className="space-y-0">
-                      <FormControl>
-                        <Input 
-                          type="number" 
-                          placeholder="Inches" 
-                          className="compact-input"
-                          {...field} 
-                          value={field.value || ''} 
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </div>
+                    <FormField
+                      control={form.control}
+                      name="heightInches"
+                      render={({ field: inchesField }) => (
+                        <FormItem className="space-y-0">
+                          <FormControl>
+                            <Input 
+                              type="number" 
+                              placeholder="Inches" 
+                              className="compact-input"
+                              {...inchesField} 
+                              value={inchesField.value || ''} 
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </FormItem>
+              )}
+            />
           )}
 
           {/* Conditional Weight Fields Based on Unit System */}
