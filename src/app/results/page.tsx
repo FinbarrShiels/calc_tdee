@@ -266,7 +266,7 @@ function ResultsContent() {
           <TopAd />
         </div>
 
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 max-w-[800px]">
           <Card className="shadow-lg mb-8">
             <CardHeader>
               <CardTitle className="text-2xl text-green-700">Your Stats</CardTitle>
