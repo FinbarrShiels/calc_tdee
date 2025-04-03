@@ -266,14 +266,7 @@ function ResultsContent() {
           <TopAd />
         </div>
 
-        {/* Ad space above results - only visible on larger screens */}
-        <div className="container mx-auto px-4 py-4 max-w-[900px] hidden md:block">
-          <div className="bg-gray-200 rounded-lg h-[100px] flex items-center justify-center">
-            <p className="text-gray-500">Advertisement Space</p>
-          </div>
-        </div>
-
-        <div className="container mx-auto px-4 py-8 max-w-[900px]">
+        <div className="container mx-auto px-4 py-8">
           <Card className="shadow-lg mb-8">
             <CardHeader>
               <CardTitle className="text-2xl text-green-700">Your Stats</CardTitle>
