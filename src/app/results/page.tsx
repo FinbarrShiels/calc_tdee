@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TopAd from "@/components/TopAd";
 
 // Type for user data
 type UserData = {
@@ -259,6 +260,11 @@ function ResultsContent() {
             <p className="text-white text-center mt-2">TDEE Calculation Summary</p>
           </div>
         </header>
+
+        {/* Top Ad */}
+        <div className="container mx-auto px-4 py-4 flex justify-center">
+          <TopAd />
+        </div>
 
         {/* Ad space above results - only visible on larger screens */}
         <div className="container mx-auto px-4 py-4 max-w-[900px] hidden md:block">

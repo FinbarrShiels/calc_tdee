@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from 'next/script';
 import TdeeExplanationClient from '@/components/TdeeExplanationClient';
+import TopAd from '@/components/TopAd';
 
 // Dynamically import non-critical components with higher priority
 const TdeeCalculatorForm = nextDynamic(() => import('@/components/TdeeCalculatorForm'), {
@@ -34,6 +35,11 @@ export default function Home() {
             <p className="text-white text-center mt-2">Calculate your Total Daily Energy Expenditure</p>
           </div>
         </header>
+
+        {/* Top Ad */}
+        <div className="container mx-auto px-4 py-4 flex justify-center">
+          <TopAd />
+        </div>
 
         <div className="container mx-auto px-4 py-8 max-w-[800px]">
           <Card className="shadow-lg">
